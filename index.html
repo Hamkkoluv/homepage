@@ -1,101 +1,183 @@
-// 파일명: 마중물-프로그램-페이지.jsx
-// 이 파일을 Github에 올리고 Vercel에 배포하면 바로 동작하도록 구성된 단일 React 컴포넌트입니다.
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>책으로 학생과 교사가 만나는 마중물</title>
 
-import React from 'react';
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-// 상단에 파일 이름을 명시했습니다. 필요하면 그대로 사용하세요.
-const FILE_NAME = "마중물-프로그램-페이지.jsx";
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #FBF7F0;
+      color: #3b3b3b;
+    }
 
-export default function MajungmulPage() {
-  return (
-    <div className="min-h-screen bg-ivory-50 flex items-center justify-center p-6" style={{backgroundColor: '#FBF7F0'}}>
-      <div className="max-w-5xl w-full rounded-2xl shadow-lg overflow-hidden" style={{background: 'linear-gradient(180deg, #FFFDF8, #FFFCF5)'}}>
-        {/* HERO */}
-        <header className="p-8 md:p-12 flex flex-col md:flex-row items-center gap-8">
-          <div className="flex-1">
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-4" style={{color: '#3b3b3b'}}>책으로 학생과 교사가 만나는 <span className="text-amber-600">마중물</span></h1>
-            <p className="mb-6 text-gray-700 leading-relaxed">마중물은 책을 매개로 학생과 교사가 정기적으로 만나, 진로와 연결된 의미 있는 탐구를 함께 만들어가는 자발적 프로그램입니다. 책으로 시작된 작은 물줄기가 모여 학생과 교사의 성장을 적셔 줍니다.</p>
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      background: linear-gradient(180deg, #FFFDF8, #FFFCF5);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
 
-            <div className="flex gap-3">
-              <a href="#examples" className="rounded-full px-5 py-2 shadow-sm border border-transparent hover:shadow-md transition inline-block" style={{backgroundColor:'#FFF6E0'}}>활동 예시 보기</a>
-              <a href="https://ysgh.hs.jne.kr/" target="_blank" rel="noopener noreferrer" className="rounded-full px-5 py-2 shadow-sm border border-transparent hover:shadow-md transition inline-block" style={{backgroundColor:'#FFF6E0'}}>여수여자고등학교</a>
-            </div>
+    header, section, footer {
+      padding: 50px;
+    }
 
-            {/* 작품 미리보기 카드들 */}
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="rounded-xl p-4 shadow-md" style={{backgroundColor:'#FFFFFF'}}>
-                <h3 className="font-semibold">학교 활동: 마중물</h3>
-                <p className="text-sm text-gray-600">책으로 학생과 교사가 만나 의미 있는 탐구활동을 운영합니다. 독서·토의·체험·캠페인까지!</p>
-              </div>
-              <div className="rounded-xl p-4 shadow-md flex items-center gap-4" style={{backgroundColor:'#FFFFFF'}}>
-                <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b8f8f3c7a5a3b7c1f2d" alt="책 이미지" className="w-16 h-16 object-cover rounded-md"/>
-                <div>
-                  <h4 className="font-medium">학생 작품 모음</h4>
-                  <p className="text-sm text-gray-600">학생들이 책을 통해 완성한 프로젝트와 포스터를 전시합니다.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    h1, h2, h3 {
+      margin-top: 0;
+    }
 
-          <div className="w-full md:w-72 flex-shrink-0">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3a2b4b8f0c1e2a4f6d1a" alt="학교 전경 이미지" className="rounded-xl shadow-md object-cover w-full h-56 md:h-64"/>
-          </div>
-        </header>
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #FFF6E0;
+      border-radius: 30px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      text-decoration: none;
+      color: #3b3b3b;
+      margin-right: 10px;
+    }
 
-        {/* ABOUT */}
-        <section className="p-8 md:p-12 border-t" style={{borderColor:'#F0E6D8'}}>
-          <h2 className="text-2xl font-bold mb-4">마중물은 어떤 활동인가요? <span className="text-sm text-amber-500">(About)</span></h2>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
 
-          <p className="text-gray-700 mb-4 leading-relaxed">마중물은 진로가 비슷한 학생들이 한데 모여, 지도교사와 함께 한 권의 책을 골라 그 책을 매개로 다양한 탐구를 펼치는 활동입니다. 책이 곧 실험대, 토론 무대, 그리고 캠페인 기획서가 됩니다 — 말 그대로 책이 물꼬가 되어 작은 변화를 일으키는 ‘마중물’이죠.</p>
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
 
-          <p className="text-gray-700 leading-relaxed">진로와 연결된 독서·토의·토론, 실제 체험 활동, 학교 캠페인 등 다양한 방식으로 탐구를 진행하고, 학생들은 스스로 질문을 만들고 답을 찾아갑니다. 교사와 학생이 함께 성장하는 이 시간은 자발성과 주도성이 빛나는 장면으로 가득합니다. (재치 포인트: 책 한 권으로 ‘진로 탐정단’이 탄생하기도 합니다.)</p>
-        </section>
+    .preview-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
 
-        {/* EXPERIENCE */}
-        <section id="examples" className="p-8 md:p-12 border-t" style={{borderColor:'#F0E6D8'}}>
-          <h2 className="text-2xl font-bold mb-4">Experience</h2>
+    footer {
+      background: #FBF7F0;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-xl p-6 shadow-sm" style={{backgroundColor:'#FFF'}}>
-              <h3 className="font-semibold mb-2">2024 마중물 우수작품</h3>
-              <p className="text-sm text-gray-600">학생들이 선정한 책을 바탕으로 제작한 창의적 리포트와 포스터 전시 — 심사위원 만장일치 추천작.</p>
-            </div>
+  </style>
+</head>
+<body>
 
-            <div className="rounded-xl p-6 shadow-sm" style={{backgroundColor:'#FFF'}}>
-              <h3 className="font-semibold mb-2">2025 마중물 중간활동</h3>
-              <p className="text-sm text-gray-600">진로별 토론회와 현장 체험을 결합한 중간 발표 — 학생 주도의 캠페인 시범 운영.</p>
-            </div>
+  <div class="container">
+    
+    <!-- HERO -->
+    <header>
+      <h1 style="font-size: 34px; font-weight: 800;">
+        책으로 학생과 교사가 만나는 <span style="color:#d28824;">마중물</span>
+      </h1>
+      <p style="line-height: 1.7;">
+        마중물은 책을 매개로 학생과 교사가 정기적으로 만나, 진로와 연결된 의미 있는 탐구를 함께 만들어가는 자발적 프로그램입니다.
+        책으로 시작된 작은 물줄기가 모여 학생과 교사의 성장을 적셔 줍니다.
+      </p>
 
-            <div className="rounded-xl p-6 shadow-sm" style={{backgroundColor:'#FFF'}}>
-              <h3 className="font-semibold mb-2">2023 마중물 캠페인</h3>
-              <p className="text-sm text-gray-600">‘책 읽는 학교’ 캠페인으로 전체 학교 대상 독서 주간 기획 및 운영 완료.</p>
-            </div>
+      <a href="#examples" class="btn">활동 예시 보기</a>
+      <a href="https://ysgh.hs.jne.kr/" target="_blank" class="btn">여수여자고등학교</a>
 
-            <div className="rounded-xl p-6 shadow-sm" style={{backgroundColor:'#FFF'}}>
-              <h3 className="font-semibold mb-2">2024 마중물 체험보고서</h3>
-              <p className="text-sm text-gray-600">실무자 인터뷰와 현장 실습을 담은 체험보고서 — 진로 설계에 실용적 자료로 활용.</p>
-            </div>
+      <div class="grid" style="margin-top: 30px;">
+        <div class="card">
+          <h3>학교 활동: 마중물</h3>
+          <p style="font-size:14px; color:#555;">
+            책으로 학생과 교사가 만나 의미 있는 탐구활동을 운영합니다.
+            독서·토의·체험·캠페인까지!
+          </p>
+        </div>
 
-            <div className="rounded-xl p-6 shadow-sm" style={{backgroundColor:'#FFF'}}>
-              <h3 className="font-semibold mb-2">2025 마중물 포스터전</h3>
-              <p className="text-sm text-gray-600">학생들이 직접 디자인한 포스터 전시와 온라인 전시자료 아카이빙.</p>
-            </div>
-          </div>
-        </section>
-
-        {/* LINKS */}
-        <section className="p-8 md:p-12 border-t" style={{borderColor:'#F0E6D8'}}>
-          <h2 className="text-xl font-bold mb-3">Links</h2>
-          <p className="text-gray-700 mb-4">여수여자고등학교 공식 홈페이지:</p>
-          <a href="https://ysgh.hs.jne.kr/" target="_blank" rel="noreferrer" className="inline-block rounded-lg px-4 py-2" style={{backgroundColor:'#FFF6E0'}}>https://ysgh.hs.jne.kr/</a>
-        </section>
-
-        {/* FOOTER */}
-        <footer className="p-6 text-center text-sm text-gray-600" style={{backgroundColor:'#FBF7F0'}}>
-          <div className="mb-2">Designed for Hamkko / © 2025 Hamkko. All Rights Reserved.</div>
-          <div style={{fontSize:12}}>파일: {FILE_NAME}</div>
-        </footer>
+        <div class="card">
+          <h3>학생 작품 모음</h3>
+          <p style="font-size:14px; color:#555;">
+            학생들이 책을 통해 완성한 프로젝트와 포스터를 전시합니다.
+          </p>
+        </div>
       </div>
-    </div>
-  );
-}
+
+      <img class="preview-img" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" alt="학교 이미지">
+    </header>
+
+    <!-- ABOUT -->
+    <section>
+      <h2 style="font-size:28px; font-weight:700;">마중물은 어떤 활동인가요? <span style="color:#d28824; font-size:14px;">About</span></h2>
+
+      <p style="line-height:1.8;">
+        마중물은 진로가 비슷한 학생들이 한데 모여, 지도교사와 함께 한 권의 책을 골라
+        그 책을 매개로 다양한 탐구를 펼치는 활동입니다.
+        책이 곧 실험대, 토론 무대, 캠페인 기획서가 됩니다 —
+        말 그대로 책이 물꼬가 되어 작은 변화를 일으키는 ‘마중물’이죠.
+      </p>
+
+      <p style="line-height:1.8;">
+        독서·토의·토론, 체험 활동, 캠페인 등 다양한 방식으로 탐구를 진행하고,
+        학생들은 스스로 질문을 만들고 답을 찾아갑니다.
+        교사와 학생이 함께 성장하는 이 시간은 자발성과 주도성이 빛나는 장면으로 가득합니다.
+        (재치 포인트: 책 한 권으로 ‘진로 탐정단’이 탄생하기도 합니다!)
+      </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="examples">
+      <h2 style="font-size:28px; font-weight:700;">Experience</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>2024 마중물 우수작품</h3>
+          <p>책 기반 창의 리포트·포스터 전시 — 심사위원 만장일치 선정.</p>
+        </div>
+
+        <div class="card">
+          <h3>2025 마중물 중간활동</h3>
+          <p>진로별 토론회 & 현장 체험 결합 중간 발표.</p>
+        </div>
+
+        <div class="card">
+          <h3>2023 마중물 캠페인</h3>
+          <p>학교 전체 독서 주간 기획 및 운영 완료.</p>
+        </div>
+
+        <div class="card">
+          <h3>2024 마중물 체험보고서</h3>
+          <p>현장 인터뷰 기반 실무 탐색 보고서 제작.</p>
+        </div>
+
+        <div class="card">
+          <h3>2025 마중물 포스터전</h3>
+          <p>학생 디자인 포스터 온·오프라인 전시.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LINKS -->
+    <section>
+      <h2 style="font-size:22px; font-weight:700;">Links</h2>
+      <p>여수여자고등학교 공식 홈페이지:</p>
+      <a href="https://ysgh.hs.jne.kr/" target="_blank" class="btn">여수여자고등학교 홈페이지</a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      Designed for Hamkko / © 2025 Hamkko. All Rights Reserved.<br>
+      파일: index.html
+    </footer>
+
+  </div>
+
+</body>
+</html>
